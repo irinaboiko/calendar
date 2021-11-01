@@ -2,18 +2,17 @@ import React, { FC, useState } from "react";
 import { Layout, Row } from "antd";
 
 import LoginPageLayout from "../components/LoginPageLayout";
-import { useDispatch } from "react-redux";
-import { AuthActionCreators } from "../actions";
 import { useTypedSelector } from "../../../hooks/UseTypedSelector";
+import { useActions } from "../../../hooks/useActions";
 
 const LoginPageContainer: FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
+  const { login } = useActions();
   const { isLoading, error } = useTypedSelector((state) => state.authReducer);
 
   const onSubmit = () => {
-    dispatch(AuthActionCreators.login(username, password));
+    login(username, password);
   };
 
   return (
