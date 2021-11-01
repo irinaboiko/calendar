@@ -1,9 +1,11 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
+
 import { privateRoutes, publicRoutes, RouteNames } from "./routesNames";
+import { useTypedSelector } from "../hooks/UseTypedSelector";
 
 const Routes = () => {
-  const isAuth = false;
+  const { isAuth } = useTypedSelector((state) => state.authReducer);
 
   return isAuth ? (
     <Switch>
