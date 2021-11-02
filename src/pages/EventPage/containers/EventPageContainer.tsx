@@ -1,7 +1,29 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
+import { Button, Layout, Modal, Row } from "antd";
+import EventsCalendar from "../../../commonComponents/Calendar";
+import EventForm from "../../../commonComponents/EventForm";
 
 const EventPageContainer: FC = () => {
-  return <div>Event Page</div>;
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  return (
+    <Layout>
+      <EventsCalendar events={[]} />
+      <Row justify="center">
+        <Button onClick={() => setIsModalVisible(true)}>
+          Добавить событие
+        </Button>
+      </Row>
+      <Modal
+        title="Добавить событие"
+        visible={isModalVisible}
+        footer={null}
+        onCancel={() => setIsModalVisible(false)}
+      >
+        <EventForm />
+      </Modal>
+    </Layout>
+  );
 };
 
 export default EventPageContainer;
